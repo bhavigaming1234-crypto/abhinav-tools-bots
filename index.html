@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ABHINAV TOOLS AND BOTS - Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div id="mainContainer" class="container">
@@ -28,6 +29,16 @@
                         <h2>Admin Panel</h2>
                         <p>Manage files and content</p>
                     </div>
+                </div>
+
+                <!-- Social Links Footer -->
+                <div class="social-links">
+                    <a href="#" id="instagramLink" target="_blank" class="social-icon instagram" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" id="discordLink" target="_blank" class="social-icon discord" title="Discord">
+                        <i class="fab fa-discord"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -72,6 +83,31 @@
                 </div>
                 
                 <div class="admin-content">
+                    <!-- Social Links Section -->
+                    <div class="admin-section">
+                        <h2>🔗 Social Media Links</h2>
+                        <div class="social-form-group">
+                            <div class="form-group">
+                                <label for="instagramUrl">Instagram Link:</label>
+                                <div class="input-with-icon">
+                                    <i class="fab fa-instagram"></i>
+                                    <input type="url" id="instagramUrl" placeholder="https://instagram.com/username" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="discordUrl">Discord Link:</label>
+                                <div class="input-with-icon">
+                                    <i class="fab fa-discord"></i>
+                                    <input type="url" id="discordUrl" placeholder="https://discord.gg/invite" required>
+                                </div>
+                            </div>
+                            
+                            <button type="button" class="btn-primary" onclick="updateSocialLinks()">Update Social Links</button>
+                        </div>
+                        <div id="socialStatus" class="upload-status"></div>
+                    </div>
+
                     <!-- Upload Section -->
                     <div class="admin-section">
                         <h2>📁 Upload File</h2>
@@ -133,6 +169,16 @@
                 <!-- Files Display -->
                 <div id="userFilesList" class="user-files-grid">
                     <div class="no-files">No files available yet</div>
+                </div>
+
+                <!-- Social Links Footer -->
+                <div class="user-social-links">
+                    <a href="#" id="userInstagramLink" target="_blank" class="social-icon instagram" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" id="userDiscordLink" target="_blank" class="social-icon discord" title="Discord">
+                        <i class="fab fa-discord"></i>
+                    </a>
                 </div>
             </div>
         </div>
