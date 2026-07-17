@@ -6,14 +6,51 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d1b4e 100%);
+    background-image: 
+        linear-gradient(135deg, rgba(10, 14, 39, 0.85) 0%, rgba(26, 31, 58, 0.85) 50%, rgba(45, 27, 78, 0.85) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23ff006e;stop-opacity:0.15" /><stop offset="50%" style="stop-color:%236c5ce7;stop-opacity:0.1" /><stop offset="100%" style="stop-color:%2300d4ff;stop-opacity:0.15" /></linearGradient></defs><rect width="1200" height="800" fill="url(%23grad1)"/></svg>');
+    background-size: cover, 200% 200%;
+    background-position: center, center;
+    background-attachment: fixed;
     min-height: 100vh;
     color: #333;
+    animation: bgShift 15s ease infinite;
+}
+
+@keyframes bgShift {
+    0% {
+        background-position: center, 0% 0%;
+    }
+    50% {
+        background-position: center, 100% 100%;
+    }
+    100% {
+        background-position: center, 0% 0%;
+    }
+}
+
+/* Solo Leveling Theme - Add glowing effects */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 0, 110, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(108, 92, 231, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
 }
 
 .container {
     width: 100%;
     min-height: 100vh;
+    position: relative;
+    z-index: 1;
 }
 
 .page {
@@ -58,14 +95,30 @@ body {
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 20px rgba(255, 0, 110, 0.6), 0 0 40px rgba(108, 92, 231, 0.4);
     letter-spacing: 2px;
+    background: linear-gradient(45deg, #ff006e, #6c5ce7, #00d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(255, 0, 110, 0.6), 0 0 40px rgba(108, 92, 231, 0.4);
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(255, 0, 110, 0.8), 0 0 60px rgba(108, 92, 231, 0.6);
+    }
 }
 
 .subtitle {
     font-size: 1.3rem;
     opacity: 0.9;
     letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 10px rgba(108, 92, 231, 0.5);
 }
 
 .options-container {
@@ -76,21 +129,24 @@ body {
 }
 
 .option-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
     padding: 40px;
     width: 300px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 0 30px rgba(108, 92, 231, 0.1);
     text-align: center;
+    border: 2px solid rgba(108, 92, 231, 0.3);
+    backdrop-filter: blur(10px);
 }
 
 .option-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 0, 110, 0.4);
+    background: rgba(108, 92, 231, 0.1);
+    border-color: rgba(255, 0, 110, 0.6);
+    color: #ff006e;
 }
 
 .option-icon {
@@ -118,18 +174,23 @@ body {
 }
 
 .auth-container {
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
     padding: 50px;
     width: 100%;
     max-width: 400px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(108, 92, 231, 0.3);
+    border: 2px solid rgba(108, 92, 231, 0.3);
+    backdrop-filter: blur(10px);
 }
 
 .auth-container h1 {
     font-size: 2rem;
     margin-bottom: 10px;
-    color: #667eea;
+    background: linear-gradient(45deg, #ff006e, #6c5ce7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-align: center;
 }
 
@@ -158,13 +219,15 @@ body {
     border-radius: 10px;
     font-size: 1rem;
     font-family: inherit;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #6c5ce7;
+    box-shadow: 0 0 15px rgba(108, 92, 231, 0.3);
 }
 
 .password-input-wrapper {
@@ -190,7 +253,7 @@ body {
 .btn-primary {
     width: 100%;
     padding: 12px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #6c5ce7 0%, #ff006e 100%);
     color: white;
     border: none;
     border-radius: 10px;
@@ -198,11 +261,12 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 10px 25px rgba(108, 92, 231, 0.5), 0 0 20px rgba(255, 0, 110, 0.3);
 }
 
 .btn-back {
@@ -219,7 +283,8 @@ body {
 
 .btn-back:hover {
     background: #e0e0e0;
-    border-color: #667eea;
+    border-color: #6c5ce7;
+    color: #6c5ce7;
 }
 
 .error-message {
@@ -229,6 +294,7 @@ body {
     background: #fadbd8;
     border-radius: 5px;
     display: none;
+    border-left: 4px solid #e74c3c;
 }
 
 .error-message.show {
@@ -247,31 +313,38 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 40px;
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
     padding: 30px;
     border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(108, 92, 231, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .admin-header h1 {
     font-size: 2.5rem;
-    color: #667eea;
+    background: linear-gradient(45deg, #ff006e, #6c5ce7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .btn-logout {
     padding: 10px 30px;
-    background: #e74c3c;
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
     color: white;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
 }
 
 .btn-logout:hover {
-    background: #c0392b;
+    background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
     transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(231, 76, 60, 0.5);
 }
 
 .admin-content {
@@ -280,15 +353,20 @@ body {
 }
 
 .admin-section {
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
     padding: 30px;
     border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(108, 92, 231, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .admin-section h2 {
     font-size: 1.8rem;
-    color: #667eea;
+    background: linear-gradient(45deg, #ff006e, #6c5ce7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
@@ -296,24 +374,26 @@ body {
 }
 
 .upload-area {
-    border: 3px dashed #667eea;
+    border: 3px dashed #6c5ce7;
     border-radius: 15px;
     padding: 40px;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: #f8f9ff;
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(255, 0, 110, 0.05) 100%);
 }
 
 .upload-area:hover {
-    background: #f0f3ff;
-    border-color: #764ba2;
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.15) 0%, rgba(255, 0, 110, 0.1) 100%);
+    border-color: #ff006e;
+    box-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
 }
 
 .upload-area.drag-over {
-    background: #e8ebff;
-    border-color: #764ba2;
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.2) 0%, rgba(255, 0, 110, 0.15) 100%);
+    border-color: #ff006e;
     transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(255, 0, 110, 0.4);
 }
 
 .upload-content {
@@ -323,6 +403,16 @@ body {
 .upload-icon {
     font-size: 3rem;
     margin-bottom: 10px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 .upload-area p {
@@ -335,6 +425,7 @@ body {
     padding: 10px;
     border-radius: 5px;
     display: none;
+    border-left: 4px solid #27ae60;
 }
 
 .upload-status.success {
@@ -357,13 +448,19 @@ body {
 }
 
 .admin-file-item {
-    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(255, 0, 110, 0.05) 100%);
     padding: 20px;
     border-radius: 10px;
-    border-left: 5px solid #667eea;
+    border-left: 5px solid #6c5ce7;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.3s ease;
+}
+
+.admin-file-item:hover {
+    border-left-color: #ff006e;
+    box-shadow: 0 0 15px rgba(108, 92, 231, 0.2);
 }
 
 .admin-file-info h3 {
@@ -387,7 +484,7 @@ body {
 
 .btn-delete {
     padding: 8px 16px;
-    background: #e74c3c;
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
     color: white;
     border: none;
     border-radius: 5px;
@@ -396,7 +493,8 @@ body {
 }
 
 .btn-delete:hover {
-    background: #c0392b;
+    background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+    transform: scale(1.05);
 }
 
 /* USER PORTAL */
@@ -411,15 +509,20 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 40px;
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
     padding: 30px;
     border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(108, 92, 231, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .user-header h1 {
     font-size: 2.5rem;
-    color: #667eea;
+    background: linear-gradient(45deg, #ff006e, #6c5ce7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .search-container {
@@ -429,17 +532,23 @@ body {
 .search-container input {
     width: 100%;
     padding: 15px 20px;
-    border: 2px solid white;
+    border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 50px;
     font-size: 1.1rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
 }
 
 .search-container input:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+    border-color: #ff006e;
+    box-shadow: 0 5px 20px rgba(108, 92, 231, 0.3), 0 0 20px rgba(255, 0, 110, 0.2);
+}
+
+.search-container input::placeholder {
+    color: #999;
 }
 
 .user-files-grid {
@@ -449,29 +558,34 @@ body {
 }
 
 .user-file-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     cursor: pointer;
+    border: 2px solid rgba(108, 92, 231, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .user-file-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 30px rgba(108, 92, 231, 0.3);
+    border-color: rgba(255, 0, 110, 0.5);
 }
 
 .user-file-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #6c5ce7 0%, #ff006e 100%);
     padding: 20px;
     color: white;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .user-file-header h3 {
     font-size: 1.3rem;
     margin-bottom: 5px;
     word-break: break-word;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .user-file-content {
@@ -495,41 +609,48 @@ body {
 .btn-view {
     flex: 1;
     padding: 10px;
-    background: #667eea;
+    background: linear-gradient(135deg, #6c5ce7 0%, #764ba2 100%);
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(108, 92, 231, 0.2);
 }
 
 .btn-view:hover {
-    background: #764ba2;
+    background: linear-gradient(135deg, #764ba2 0%, #6c5ce7 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
 }
 
 .btn-download {
     flex: 1;
     padding: 10px;
-    background: #27ae60;
+    background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(39, 174, 96, 0.2);
 }
 
 .btn-download:hover {
-    background: #229954;
+    background: linear-gradient(135deg, #229954 0%, #27ae60 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
 }
 
 .no-files {
     grid-column: 1 / -1;
     text-align: center;
     padding: 60px 20px;
-    color: white;
+    color: rgba(255, 255, 255, 0.9);
     font-size: 1.3rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* MODAL */
@@ -540,11 +661,12 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.8);
     z-index: 1000;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    backdrop-filter: blur(5px);
 }
 
 .modal.active {
@@ -552,14 +674,15 @@ body {
 }
 
 .modal-content {
-    background: white;
+    background: rgba(255, 255, 255, 0.98);
     border-radius: 20px;
     padding: 30px;
     max-width: 800px;
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(108, 92, 231, 0.3);
+    border: 2px solid rgba(108, 92, 231, 0.2);
 }
 
 .modal-header {
@@ -572,7 +695,10 @@ body {
 }
 
 .modal-header h2 {
-    color: #667eea;
+    background: linear-gradient(45deg, #ff006e, #6c5ce7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-size: 1.8rem;
 }
 
@@ -582,10 +708,12 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
     color: #999;
+    transition: all 0.3s ease;
 }
 
 .modal-close:hover {
-    color: #333;
+    color: #ff006e;
+    transform: rotate(90deg);
 }
 
 .modal-body {
