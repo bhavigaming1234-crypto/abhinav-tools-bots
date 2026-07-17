@@ -7,30 +7,14 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d1b4e 100%);
-    background-image: 
-        linear-gradient(135deg, rgba(10, 14, 39, 0.85) 0%, rgba(26, 31, 58, 0.85) 50%, rgba(45, 27, 78, 0.85) 100%),
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23ff006e;stop-opacity:0.15" /><stop offset="50%" style="stop-color:%236c5ce7;stop-opacity:0.1" /><stop offset="100%" style="stop-color:%2300d4ff;stop-opacity:0.15" /></linearGradient></defs><rect width="1200" height="800" fill="url(%23grad1)"/></svg>');
-    background-size: cover, 200% 200%;
-    background-position: center, center;
     background-attachment: fixed;
     min-height: 100vh;
     color: #333;
-    animation: bgShift 15s ease infinite;
+    position: relative;
+    overflow-x: hidden;
 }
 
-@keyframes bgShift {
-    0% {
-        background-position: center, 0% 0%;
-    }
-    50% {
-        background-position: center, 100% 100%;
-    }
-    100% {
-        background-position: center, 0% 0%;
-    }
-}
-
-/* Solo Leveling Theme - Add glowing effects */
+/* Animated Background with Solo Leveling Theme */
 body::before {
     content: '';
     position: fixed;
@@ -39,11 +23,60 @@ body::before {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(circle at 20% 30%, rgba(255, 0, 110, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(108, 92, 231, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+        radial-gradient(circle at 20% 30%, rgba(255, 0, 110, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(108, 92, 231, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+        linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d1b4e 100%);
+    background-size: 400% 400%, 400% 400%, 400% 400%, 100% 100%;
+    background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%;
+    animation: soloLevelingBg 20s ease infinite;
     pointer-events: none;
     z-index: 0;
+}
+
+@keyframes soloLevelingBg {
+    0% {
+        background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%;
+    }
+    25% {
+        background-position: 50% 50%, 50% 0%, 25% 75%, 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%, 0% 100%, 50% 50%, 0% 0%;
+    }
+    75% {
+        background-position: 50% 50%, 50% 0%, 75% 25%, 0% 0%;
+    }
+    100% {
+        background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%;
+    }
+}
+
+/* Animated Overlay Effect */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(45deg, rgba(255, 0, 110, 0.03) 25%, transparent 25%, transparent 50%, rgba(255, 0, 110, 0.03) 50%, rgba(255, 0, 110, 0.03) 75%, transparent 75%, transparent),
+        linear-gradient(45deg, rgba(108, 92, 231, 0.03) 25%, transparent 25%, transparent 50%, rgba(108, 92, 231, 0.03) 50%, rgba(108, 92, 231, 0.03) 75%, transparent 75%, transparent);
+    background-size: 100px 100px, 100px 100px;
+    background-position: 0 0, 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+    animation: slidePattern 20s linear infinite;
+}
+
+@keyframes slidePattern {
+    0% {
+        background-position: 0 0, 50px 50px;
+    }
+    100% {
+        background-position: 100px 100px, 150px 150px;
+    }
 }
 
 .container {
@@ -83,6 +116,7 @@ body::before {
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+    position: relative;
 }
 
 .home-header {
@@ -95,30 +129,43 @@ body::before {
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 10px;
-    text-shadow: 0 0 20px rgba(255, 0, 110, 0.6), 0 0 40px rgba(108, 92, 231, 0.4);
+    text-shadow: 0 0 20px rgba(255, 0, 110, 0.8), 0 0 40px rgba(108, 92, 231, 0.6), 0 0 60px rgba(0, 212, 255, 0.4);
     letter-spacing: 2px;
-    background: linear-gradient(45deg, #ff006e, #6c5ce7, #00d4ff);
+    background: linear-gradient(45deg, #ff006e, #6c5ce7, #00d4ff, #ff006e);
+    background-size: 300% 300%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: glow 3s ease-in-out infinite;
+    animation: titleGlow 4s ease-in-out infinite;
 }
 
-@keyframes glow {
+@keyframes titleGlow {
     0%, 100% {
-        text-shadow: 0 0 20px rgba(255, 0, 110, 0.6), 0 0 40px rgba(108, 92, 231, 0.4);
+        text-shadow: 0 0 20px rgba(255, 0, 110, 0.8), 0 0 40px rgba(108, 92, 231, 0.6);
+        background-position: 0% 50%;
     }
     50% {
-        text-shadow: 0 0 30px rgba(255, 0, 110, 0.8), 0 0 60px rgba(108, 92, 231, 0.6);
+        text-shadow: 0 0 30px rgba(255, 0, 110, 1), 0 0 60px rgba(108, 92, 231, 0.8), 0 0 80px rgba(0, 212, 255, 0.6);
+        background-position: 100% 50%;
     }
 }
 
 .subtitle {
     font-size: 1.3rem;
-    opacity: 0.9;
+    opacity: 0.95;
     letter-spacing: 1px;
-    color: rgba(255, 255, 255, 0.9);
-    text-shadow: 0 0 10px rgba(108, 92, 231, 0.5);
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 0 15px rgba(108, 92, 231, 0.6), 0 0 30px rgba(255, 0, 110, 0.3);
+    animation: subtitlePulse 3s ease-in-out infinite;
+}
+
+@keyframes subtitlePulse {
+    0%, 100% {
+        opacity: 0.9;
+    }
+    50% {
+        opacity: 1;
+    }
 }
 
 .options-container {
@@ -126,6 +173,7 @@ body::before {
     gap: 40px;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 40px;
 }
 
 .option-card {
@@ -139,6 +187,23 @@ body::before {
     text-align: center;
     border: 2px solid rgba(108, 92, 231, 0.3);
     backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.option-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 0, 110, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.option-card:hover::before {
+    left: 100%;
 }
 
 .option-card:hover {
@@ -152,6 +217,16 @@ body::before {
 .option-icon {
     font-size: 4rem;
     margin-bottom: 20px;
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
 }
 
 .option-card h2 {
@@ -162,6 +237,78 @@ body::before {
 .option-card p {
     font-size: 1rem;
     opacity: 0.7;
+}
+
+/* SOCIAL LINKS */
+.social-links, .user-social-links {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 40px;
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.social-icon.instagram::before {
+    background: linear-gradient(45deg, #ff006e, #6c5ce7, #00d4ff);
+}
+
+.social-icon.discord::before {
+    background: linear-gradient(45deg, #5865f2, #7289da);
+}
+
+.social-icon:hover::before {
+    left: 0;
+}
+
+.social-icon:hover {
+    transform: scale(1.2) translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 0, 110, 0.4);
+    border-color: rgba(255, 0, 110, 0.8);
+}
+
+.user-social-links {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 2px solid rgba(108, 92, 231, 0.2);
 }
 
 /* AUTH PAGE */
@@ -182,6 +329,18 @@ body::before {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(108, 92, 231, 0.3);
     border: 2px solid rgba(108, 92, 231, 0.3);
     backdrop-filter: blur(10px);
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .auth-container h1 {
@@ -248,6 +407,29 @@ body::before {
     cursor: pointer;
     font-size: 1.2rem;
     padding: 5px;
+    transition: transform 0.3s ease;
+}
+
+.toggle-password:hover {
+    transform: scale(1.2);
+}
+
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-icon i {
+    position: absolute;
+    left: 12px;
+    color: #6c5ce7;
+    font-size: 1.1rem;
+    pointer-events: none;
+}
+
+.input-with-icon input {
+    padding-left: 40px !important;
 }
 
 .btn-primary {
@@ -299,6 +481,18 @@ body::before {
 
 .error-message.show {
     display: block;
+    animation: slideInError 0.3s ease-out;
+}
+
+@keyframes slideInError {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* ADMIN PANEL */
@@ -359,6 +553,7 @@ body::before {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     border: 2px solid rgba(108, 92, 231, 0.2);
     backdrop-filter: blur(10px);
+    animation: fadeIn 0.5s ease-in;
 }
 
 .admin-section h2 {
@@ -371,6 +566,11 @@ body::before {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.social-form-group {
+    display: grid;
+    gap: 15px;
 }
 
 .upload-area {
@@ -433,6 +633,7 @@ body::before {
     background: #d4edda;
     color: #155724;
     border: 1px solid #c3e6cb;
+    animation: slideInSuccess 0.3s ease-out;
 }
 
 .upload-status.error {
@@ -440,6 +641,18 @@ body::before {
     background: #f8d7da;
     color: #721c24;
     border: 1px solid #f5c6cb;
+    animation: slideInError 0.3s ease-out;
+}
+
+@keyframes slideInSuccess {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .admin-files-list {
@@ -461,6 +674,7 @@ body::before {
 .admin-file-item:hover {
     border-left-color: #ff006e;
     box-shadow: 0 0 15px rgba(108, 92, 231, 0.2);
+    transform: translateX(5px);
 }
 
 .admin-file-info h3 {
@@ -667,6 +881,7 @@ body::before {
     align-items: center;
     padding: 20px;
     backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease-out;
 }
 
 .modal.active {
@@ -683,6 +898,18 @@ body::before {
     overflow-y: auto;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(108, 92, 231, 0.3);
     border: 2px solid rgba(108, 92, 231, 0.2);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .modal-header {
@@ -732,6 +959,8 @@ body::before {
     
     .options-container {
         gap: 20px;
+        flex-direction: column;
+        align-items: center;
     }
     
     .option-card {
@@ -763,5 +992,9 @@ body::before {
     .admin-file-actions {
         width: 100%;
         margin-top: 10px;
+    }
+    
+    .social-links, .user-social-links {
+        gap: 20px;
     }
 }
