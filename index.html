@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABHINAV TOOLS AND BOTS - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="mainContainer" class="container">
+        <!-- Home Page with Two Options -->
+        <div id="homePage" class="page active">
+            <div class="home-wrapper">
+                <div class="home-header">
+                    <h1 class="title">ABHINAV TOOLS AND BOTS</h1>
+                    <p class="subtitle">Your Ultimate Resource Hub</p>
+                </div>
+                
+                <div class="options-container">
+                    <div class="option-card" onclick="goToUserPanel()">
+                        <div class="option-icon">👤</div>
+                        <h2>User Portal</h2>
+                        <p>Browse and download files</p>
+                    </div>
+                    
+                    <div class="option-card" onclick="goToAdminLogin()">
+                        <div class="option-icon">🔐</div>
+                        <h2>Admin Panel</h2>
+                        <p>Manage files and content</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Login Page -->
+        <div id="adminLoginPage" class="page">
+            <div class="auth-wrapper">
+                <div class="auth-container">
+                    <h1>Admin Login</h1>
+                    <p class="auth-subtitle">Enter your password to access the admin panel</p>
+                    
+                    <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+                        <div class="form-group">
+                            <label for="adminPassword">Password:</label>
+                            <div class="password-input-wrapper">
+                                <input 
+                                    type="password" 
+                                    id="adminPassword" 
+                                    placeholder="Enter admin password" 
+                                    required
+                                >
+                                <button type="button" class="toggle-password" onclick="togglePasswordVisibility()">👁️</button>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Login</button>
+                    </form>
+                    
+                    <button type="button" class="btn-back" onclick="goToHome()">← Back to Home</button>
+                    
+                    <div id="loginError" class="error-message"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Panel Page -->
+        <div id="adminPanelPage" class="page">
+            <div class="admin-container">
+                <div class="admin-header">
+                    <h1>Admin Control Panel</h1>
+                    <button class="btn-logout" onclick="logout()">Logout</button>
+                </div>
+                
+                <div class="admin-content">
+                    <!-- Upload Section -->
+                    <div class="admin-section">
+                        <h2>📁 Upload File</h2>
+                        <div class="upload-area" id="uploadArea" ondrop="handleFileDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+                            <input type="file" id="fileInput" onchange="handleFileSelect(event)" style="display: none;">
+                            <div class="upload-content" onclick="document.getElementById('fileInput').click()">
+                                <div class="upload-icon">📤</div>
+                                <p>Drag and drop your file here or click to browse</p>
+                            </div>
+                        </div>
+                        <div id="uploadStatus" class="upload-status"></div>
+                    </div>
+
+                    <!-- README Section -->
+                    <div class="admin-section">
+                        <h2>📝 File Information</h2>
+                        <form id="fileInfoForm">
+                            <div class="form-group">
+                                <label for="fileName">File Name:</label>
+                                <input type="text" id="fileName" placeholder="Enter file name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="fileReadme">README Content:</label>
+                                <textarea id="fileReadme" placeholder="Enter file description/README content" rows="8" required></textarea>
+                            </div>
+                            
+                            <button type="button" class="btn-primary" onclick="addFileInfo()">Add File Info</button>
+                        </form>
+                    </div>
+
+                    <!-- Manage Files Section -->
+                    <div class="admin-section">
+                        <h2>📊 Manage Files</h2>
+                        <div id="adminFilesList" class="admin-files-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Portal Page -->
+        <div id="userPortalPage" class="page">
+            <div class="user-container">
+                <div class="user-header">
+                    <h1>Available Tools & Bots</h1>
+                    <button class="btn-back" onclick="goToHome()">← Back to Home</button>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="🔍 Search files..." 
+                        onkeyup="filterFiles()"
+                    >
+                </div>
+                
+                <!-- Files Display -->
+                <div id="userFilesList" class="user-files-grid">
+                    <div class="no-files">No files available yet</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
